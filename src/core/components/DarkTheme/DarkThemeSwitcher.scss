@@ -1,0 +1,17 @@
+@import '../../../scss/mixins.scss';
+
+.dark-theme-toggler {
+  --button-padding: 0.5rem;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  & .moon-icon, .sun-icon {
+    width: 1em;
+    height: 1em;
+  }
+}

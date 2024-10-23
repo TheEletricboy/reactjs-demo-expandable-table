@@ -1,0 +1,25 @@
+@import '../../../scss/mixins.scss';
+
+// Useful for internal libs used by multiple projects, 
+// allowing those projects to simply override the values of these css variables.
+:root {
+  --button-bg-color: var(--primary-color0);
+  --button-font-color: var(--primary-color0-contrast);
+  --button-padding: 1rem;
+}
+
+.generic-button {
+  @include generic-button;
+}
+
+.secondary {
+  // Nothing yet but could have specific.
+  // --button-font-color: #some-other-color;
+  // --button-color: #some-other-color;
+}
+
+.tertiary {
+  // Nothing yet but could have specific.
+  // --button-font-color: #some-other-color;
+  // --button-color: #some-other-color;
+}
