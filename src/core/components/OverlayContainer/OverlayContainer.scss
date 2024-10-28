@@ -1,0 +1,64 @@
+@import '/src/scss/mixins.scss';
+
+:root {
+  --overlay-padding: 1.5rem;
+  --overlay-container-alpha: 0.4;
+  --overlay-background-bg-color: rgba(var(--primary-color0-rgb), var(--overlay-container-alpha));
+  --overlay-bg-color: var(--primary-color0-contrast);
+  --overlay-bg-color-font: var(--primary-color0);
+  --overlay-border-radius: 1rem;
+}
+
+.overlay-container {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  inset: 0;
+}
+
+.overlay-wrapper {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: var(--overlay-background-bg-color);
+  cursor: pointer;
+}
+
+.overlay {
+  --close-icon-offset: var(--overlay-padding);
+
+  position: relative;
+  width: 20rem;
+  height: 25rem;
+  color: var(--overlay-bg-color-font);
+  background-color: var(--overlay-bg-color);
+  border-radius: var(--overlay-border-radius);
+  padding: var(--overlay-padding);
+  border: 1px solid var(--primary-color0);
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+
+.overlay-header {
+  border-bottom: 1px solid rgba(var(--primary-color0-rgb), 0.7);
+  width: 100%;
+  padding: 0 var(--overlay-padding) var(--overlay-padding);
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.overlay-content {
+  height: 100%;
+  @include flex-it-all;
+}

@@ -1,0 +1,35 @@
+@import '/src/scss/mixins.scss';
+
+:root {
+  --close-icon-offset: 0.9rem;
+}
+
+.close-icon {
+  position: absolute;
+  right: var(--close-icon-offset);
+  top: var(--close-icon-offset);
+  width: 1.5rem;
+  height: 1.5rem;
+  opacity: 0.5;
+  transition: opacity var(--transition-default);
+
+  @include hoverstate {
+    opacity: 1;
+  }
+}
+
+.close-icon:before, .close-icon:after {
+  position: absolute;
+  top: 0;
+  left: 0.65rem;
+  content: '';
+  height: 1.5rem;
+  width: 0.15rem;
+  background-color: var(--primary-color0);
+}
+.close-icon:before {
+  transform: rotate(45deg);
+}
+.close-icon:after {
+  transform: rotate(-45deg);
+}
