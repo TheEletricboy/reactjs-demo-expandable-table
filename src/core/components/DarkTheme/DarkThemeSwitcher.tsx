@@ -5,14 +5,15 @@ import Button from "../GenericButton/Button";
 import './DarkThemeSwitcher.scss';
 import classNames from "classnames";
 
-const themeStorageKey = "isDarkTheme";
+const themeStorageKey = "userTheme";
 
 /**
  * Currently does not do much other than set a `classname` on the document.
  */
 const DarkThemeSwitcher = () => {
   const [isDarkTheme, setIsDarkTheme] = useState<boolean>(() => {
-    return localStorage.getItem(themeStorageKey) === "true";
+    const storedTheme = localStorage.getItem(themeStorageKey);
+    return storedTheme ? JSON.parse(storedTheme).theme === 'dark' : false;
   });
 
   const buttonTitle = useMemo(
@@ -25,7 +26,10 @@ const DarkThemeSwitcher = () => {
 
     setIsDarkTheme((prevState) => {
       const newTheme = !prevState;
-      localStorage.setItem(themeStorageKey, newTheme.toString());
+      localStorage.setItem(
+        themeStorageKey,
+        JSON.stringify( { theme: newTheme ? 'dark' : 'light'}),
+      );
 
       if (newTheme) {
         htmlTag.classList.add("dark-theme");
