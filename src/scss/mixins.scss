@@ -20,7 +20,7 @@
 
   border-radius: 10px;
   background-color: var(--button-bg-color);
-  border: 2px solid var(--button-bg-color);
+  border: 2px solid var(--button-border-color);
 
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; // custom box shadow
   transition: background-color var(--transition-default), color var(--transition-default);
@@ -28,6 +28,17 @@
   @include hoverstate {
     color: var(--button-bg-color);
     background-color: transparent;
+    cursor: pointer;
+  }
+}
+
+@mixin button-inverse {
+  --button-bg-color: var(--primary-color0-contrast);
+  --button-font-color: var(--primary-color0);
+
+  @include hoverstate {
+    color: var(--button-bg-color);
+    background-color: var(--button-font-color);
     cursor: pointer;
   }
 }

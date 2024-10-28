@@ -1,8 +1,9 @@
 import { memo, useCallback, useMemo, useState } from "react";
 import MoonIcon from '../../../svgs/moon.svg?react';
 import SunIcon from '../../../svgs/sun.svg?react';
-import './DarkThemeSwitcher.scss';
 import Button from "../GenericButton/Button";
+import './DarkThemeSwitcher.scss';
+import classNames from "classnames";
 
 /**
  * Currently does not do much other than set a classname on the document.
@@ -13,16 +14,26 @@ const DarkThemeSwitcher = () => {
 
   const handleOnClick = useCallback(() => {
     const htmlTag = document.documentElement;
-    if (isDarkTheme) {
-      htmlTag.classList.remove('dark-theme');
-    } else {
-      htmlTag.classList.add('dark-theme');
-    }
-    setIsDarkTheme(prevState => !prevState);
-  }, [isDarkTheme]);
+
+    setIsDarkTheme(prevState => {
+      if (prevState) {
+        htmlTag.classList.remove('dark-theme');
+      } else {
+        htmlTag.classList.add('dark-theme');
+      }
+      return !prevState;
+    });
+  }, []);
 
   return (
-    <Button className={'dark-theme-toggler'} onClick={handleOnClick} title={buttonTitle}>
+    <Button
+      className={classNames(
+        'dark-theme-toggler',
+        { 'show-sun-icon': isDarkTheme },
+      )}
+      isInverse={isDarkTheme}
+      onClick={handleOnClick}
+      title={buttonTitle}>
       { isDarkTheme ? <SunIcon className="sun-icon"/> : <MoonIcon className="moon-icon"/> }
     </Button>
   );

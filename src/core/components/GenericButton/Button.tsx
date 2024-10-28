@@ -4,6 +4,7 @@ import './Button.scss';
 
 type TButtonProps = {
   label?: string,
+  isInverse?: boolean,
   isPrimary?: boolean; // could add secondary and tertiary in the future :D
   title?: string;
   children?: React.ReactNode;
@@ -20,6 +21,7 @@ const Button = ({
   onClick,
   title,
   children,
+  isInverse,
   className,
   ...otherProps
 }: TButtonProps) => {
@@ -27,7 +29,12 @@ const Button = ({
   const handleOnClick = useCallback((event: SyntheticEvent) => onClick?.(event), []);
   return (
     <button
-      className={classNames('generic-button', { ['primary']: isPrimary }, className)}
+      className={classNames(
+        'generic-button',
+        { ['primary']: isPrimary },
+        { 'inverse': isInverse },
+        className,
+      )}
       onClick={handleOnClick}
       title={title}
       {...otherProps}

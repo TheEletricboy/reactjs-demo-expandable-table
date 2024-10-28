@@ -1,6 +1,9 @@
-// CURRENTLY DOES NOTHING
-
 .dark-theme {
-  // here we could override the primary colours and their contrasts with something that resembles
-  // a dark theme. Easing future development.
+  // By simply inverting the main colours we can make sure there's minimal to no bugs when switching
+  // to a dark theme on all components. As long as they follow the css global var philosophy.
+  --primary-color0: #ffffff;
+  --primary-color1: #cecece;
+
+  --primary-color0-contrast: #1b1818;
+  --primary-color1-contrast: #330f0f;
 }

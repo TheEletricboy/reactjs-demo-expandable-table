@@ -1,5 +1,4 @@
 @import './scss/mixins.scss';
-@import './scss/dark-theme.scss';
 
 :root {
   font-size: 16px; // base font size, prefer REM over EM/Px.
@@ -58,6 +57,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  transition: background-color 1s ease-in-out, color 1s ease-in-out;
 }
 
 h1 {
@@ -92,7 +92,4 @@ h1 {
   a:hover {
     color: #747bff;
   }
-  // button {
-  //   background-color: #f9f9f9;
-  // }
 }

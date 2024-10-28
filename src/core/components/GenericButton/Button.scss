@@ -4,12 +4,17 @@
 // allowing those projects to simply override the values of these css variables.
 :root {
   --button-bg-color: var(--primary-color0);
+  --button-border-color: var(--primary-color0);
   --button-font-color: var(--primary-color0-contrast);
   --button-padding: 1rem;
 }
 
 .generic-button {
   @include generic-button;
+}
+
+.generic-button.inverse {
+  @include button-inverse;
 }
 
 .secondary {
