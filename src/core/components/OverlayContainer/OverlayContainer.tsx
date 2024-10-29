@@ -2,12 +2,14 @@ import { useCallback } from 'react';
 import { useOverlay } from '../../contexts/OverlayContext';
 import { CloseIcon } from '../CloseIcon/CloseIcon';
 import './OverlayContainer.scss';
+import { useTranslation } from 'react-i18next';
 
 const defaultLabel = 'Overlay';
-const lblCloseOverlay = 'Close Overlay';
 
 export const OverlayContainer = () => {
   const { overlays, removeOverlay, topOverlay } = useOverlay();
+  const { t } = useTranslation();
+  const lblCloseOverlay = t('overlays.close');;
 
   const handleRemoveOverlay = useCallback(() => {
     topOverlay && removeOverlay(topOverlay.id);

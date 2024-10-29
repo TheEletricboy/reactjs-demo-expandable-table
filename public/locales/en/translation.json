@@ -12,5 +12,8 @@
       "en-GB": "English",
       "pt-PT": "Portuguese"
     }
+  },
+  "overlays": {
+    "close": "Close Overlay"
   }
 }
