@@ -6,5 +6,7 @@
   --primary-color1: #cecece;
 
   --primary-color0-contrast: #1b1818;
-  --primary-color1-contrast: #330f0f;
+  --primary-color1-contrast: #3d3d3d;
+
+  --alt-color1-contrast: var(--primary-color0-contrast);
 }

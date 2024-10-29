@@ -26,7 +26,7 @@ const Button = ({
   ...otherProps
 }: TButtonProps) => {
   // Useful if you need to handle the event in another place, by passing it as an arg on the callback.
-  const handleOnClick = useCallback((event: SyntheticEvent) => onClick?.(event), []);
+  const handleOnClick = useCallback((event: SyntheticEvent) => onClick?.(event), [onClick]);
   return (
     <button
       className={classNames(

@@ -1,12 +1,31 @@
+@import './scss/mixins.scss';
+
 .main-app {
   height: 100%;
   width: 100vw;
 
   background-color: var(--primary-color0-contrast);
-  color: rgb(0, 0, 0);
+  color: var(--primary-color0);
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  transition: background-color 1s ease-in-out;
+  transition: background-color var(--transition-medium);
+}
+
+.greeting {
+  max-width: 50%;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  margin-bottom: 5rem;
+
+  & .developer-name {
+    color: var(--alt-color1);
+  }
+}
+
+.github-link {
+  display: flex;
+  gap: 1.5rem;
 }

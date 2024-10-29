@@ -4,16 +4,15 @@ import SunIcon from '../../../svgs/sun.svg?react';
 import Button from "../GenericButton/Button";
 import './DarkThemeSwitcher.scss';
 import classNames from "classnames";
-
-const themeStorageKey = "userTheme";
+import { userPreferencesKeyLocalStorage } from "../../utils/constants";
 
 /**
  * Currently does not do much other than set a `classname` on the document.
  */
 const DarkThemeSwitcher = () => {
   const [isDarkTheme, setIsDarkTheme] = useState<boolean>(() => {
-    const storedTheme = localStorage.getItem(themeStorageKey);
-    return storedTheme ? JSON.parse(storedTheme).theme === 'dark' : false;
+    const savedPrefs = localStorage.getItem(userPreferencesKeyLocalStorage) || '{}';
+    return savedPrefs ? JSON.parse(savedPrefs).theme === 'dark' : false;
   });
 
   const buttonTitle = useMemo(
@@ -26,9 +25,11 @@ const DarkThemeSwitcher = () => {
 
     setIsDarkTheme((prevState) => {
       const newTheme = !prevState;
+      const savedPrefs = JSON.parse(localStorage.getItem(userPreferencesKeyLocalStorage) || '{}');
+
       localStorage.setItem(
-        themeStorageKey,
-        JSON.stringify( { theme: newTheme ? 'dark' : 'light'}),
+        userPreferencesKeyLocalStorage,
+        JSON.stringify( { ...savedPrefs, theme: newTheme ? 'dark' : 'light'}),
       );
 
       if (newTheme) {

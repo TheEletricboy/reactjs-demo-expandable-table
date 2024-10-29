@@ -31,8 +31,13 @@
   --primary-color0-contrast: #ffffff;
   --primary-color1-contrast: #cecece;
 
-  --transition-time: 0.3s;
-  --transition-default: var(--transition-time) ease-in-out;
+  --alt-color1: #962433;
+  --alt-color1-contrast: var(--primary-color0);
+
+  --transition-time-xs: 0.3s;
+  --transition-time-m: 1s;
+  --transition-default: var(--transition-time-xs) ease-in-out;
+  --transition-medium: var(--transition-time-m) ease-in-out;
 }
 
 a {

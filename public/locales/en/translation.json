@@ -1,0 +1,16 @@
+{
+  "homepage": {
+    "greeting": "Hello, my name is ",
+    "greeting-developer": "Miguel Vieira.",
+    "greeting-description-1": "I've been assigned this technical test by PrimeIt. As such, this ReactJS app not only delivers on the initial acceptance criteria but also show off my knowledge of project architecture and future feature considerations.",
+    "greeting-description-2": "There are plenty of features on the finished app - as well as helpful configs and rules for aiding development. A list can be found on this project's Github repo:",
+    "start-assignment": "Start Assignment demo"
+  },
+  "language-switcher": {
+    "switch-to": "Switch language to",
+    "languages": {
+      "en-GB": "English",
+      "pt-PT": "Portuguese"
+    }
+  }
+}
