@@ -45,7 +45,7 @@ const App = () => {
       // onClose: () => console.log("some log test"),
       // props: { animationType: "fade" }
     });
-  }, []);
+  }, [addOverlay, lblStartAssingment]);
 
   return (
     <>

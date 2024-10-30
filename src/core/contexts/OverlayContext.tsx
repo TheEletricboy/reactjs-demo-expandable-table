@@ -30,12 +30,12 @@ export const OverlayContextProvider = ({children}: {children: React.ReactNode}) 
     setOverlays(prevState => prevState.filter((overlay) => overlay.id !== id));
     const overlay = overlays.find(overlay => overlay.id === id);
     overlay?.onClose?.();
-  }, [setOverlays]);
+  }, [overlays]);
 
   const clearAllOverlays = useCallback(() => {
     overlays.forEach((overlay) => overlay.onClose && overlay.onClose());
     setOverlays([]);
-  }, [setOverlays]);
+  }, [overlays]);
 
   const value = useMemo(() => {
     return ({
@@ -45,7 +45,7 @@ export const OverlayContextProvider = ({children}: {children: React.ReactNode}) 
       removeOverlay,
       clearAllOverlays,
     });
-  }, [overlays, addOverlay, removeOverlay, clearAllOverlays]);
+  }, [overlays, topOverlay, addOverlay, removeOverlay, clearAllOverlays]);
 
   return (
     <OverlayContext.Provider value={value}>

@@ -1,5 +1,7 @@
 import typescriptParser from "@typescript-eslint/parser";
 import typescriptPlugin from "@typescript-eslint/eslint-plugin";
+import reactPlugin from "eslint-plugin-react";
+import reactHooksPlugin from "eslint-plugin-react-hooks";
 
 export default [
   {
@@ -12,7 +14,9 @@ export default [
       }
     },
     plugins: {
-      "@typescript-eslint": typescriptPlugin
+      "@typescript-eslint": typescriptPlugin,
+      react: reactPlugin,
+      "react-hooks": reactHooksPlugin,
     },
     rules: {
       "indent": ["error", 2],
@@ -25,6 +29,8 @@ export default [
       "comma-dangle": ["error", "always-multiline"],
       "semi": ["error", "always"],
       "padded-blocks": ["error", { blocks: "never", switches: "never", classes: "never" }],
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn",
     }
   }
 ];
