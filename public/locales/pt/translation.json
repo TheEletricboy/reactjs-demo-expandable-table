@@ -15,5 +15,9 @@
   },
   "overlays": {
     "close": "Fechar Overlay"
+  },
+  "tutorial": {
+    "next-title": "Próxima dica",
+    "next-label": "Next"
   }
 }

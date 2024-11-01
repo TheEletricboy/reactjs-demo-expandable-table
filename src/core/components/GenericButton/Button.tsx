@@ -2,6 +2,7 @@ import classNames from "classnames";
 import { memo, SyntheticEvent, useCallback } from "react";
 import './Button.scss';
 
+// @TODO: should extend ComponentProps<"input">.
 type TButtonProps = {
   label?: string,
   isInverse?: boolean,

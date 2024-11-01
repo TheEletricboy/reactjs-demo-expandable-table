@@ -1,8 +1,8 @@
 import { useCallback } from 'react';
 import { useOverlay } from '../../contexts/OverlayContext';
 import { CloseIcon } from '../CloseIcon/CloseIcon';
-import './OverlayContainer.scss';
 import { useTranslation } from 'react-i18next';
+import './OverlayContainer.scss';
 
 const defaultLabel = 'Overlay';
 

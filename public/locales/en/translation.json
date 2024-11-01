@@ -15,5 +15,9 @@
   },
   "overlays": {
     "close": "Close Overlay"
+  },
+  "tutorial": {
+    "next-title": "Next tooltip",
+    "next-label": "Next"
   }
 }
