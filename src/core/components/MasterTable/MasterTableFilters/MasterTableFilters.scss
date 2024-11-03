@@ -1,0 +1,13 @@
+.main-filters {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  gap: 1rem;
+  padding: 0 4rem;
+}
+
+.filter-option {
+  position: relative;
+  top: 0;
+}

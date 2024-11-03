@@ -1,0 +1,32 @@
+[
+  {
+    "id": "bikes",
+    "Article": "Bikes",
+    "Region": "Germany",
+    "LegalEntity": "11",
+    "Version": "Actual",
+    "Currency": "EUR",
+    "Measure": "Unit Price",
+    "Value": 6000
+  },
+  {
+    "id": "motorbikes",
+    "Article": "Motorbikes",
+    "Region": "Great Britain",
+    "LegalEntity": "12",
+    "Version": "Budget",
+    "Currency": "USD",
+    "Measure": "Gross Revenue",
+    "Value": 22000
+  },
+  {
+    "id": "cars",
+    "Article": "Cars",
+    "Region": "America",
+    "LegalEntity": "007",
+    "Version": "--AnotherOne--",
+    "Currency": "LBS",
+    "Measure": "Total Car Price",
+    "Value": 101010
+  }
+]

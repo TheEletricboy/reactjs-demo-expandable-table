@@ -24,12 +24,14 @@
     when working with internal libraries shared between many projects, allowing them to override these
     to reflect their own colour palette with minimal to no changes needed :D 
   **/
+  
+  --primary-color0-contrast: #ffffff;
   --primary-color0: #111111;
   --primary-color0-rgb: 17, 17, 17;
   --primary-color1: #3d3d3d;
-  
-  --primary-color0-contrast: #ffffff;
   --primary-color1-contrast: #cecece;
+  --primary-color4: #3c3c3c;
+  --primary-color4-contrast: var(--primary-color0);
 
   --alt-color1: #962433;
   --alt-color1-contrast: var(--primary-color0);

@@ -1,10 +1,30 @@
-import Button from './core/components/GenericButton/Button';
-import { useOverlay } from './core/contexts/OverlayContext';
-import { OverlayContainer } from './core/components/OverlayContainer/OverlayContainer';
-import { useCallback } from 'react';
+import { useOverlay } from '../../contexts/OverlayContext';
+import { OverlayContainer } from '../OverlayContainer/OverlayContainer';
+import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Header } from './core/components/Header/Header';
+import { Header } from '../Header/Header';
+import { useFilterContext } from '../../contexts/FilterContext';
+import MasterTableFilters from '../MasterTable/MasterTableFilters/MasterTableFilters';
+import MasterTable from '../MasterTable/MasterTable';
+import Button from '../GenericButton/Button';
 import './App.scss';
+
+// DEV
+const FilterSummary= () => {
+  const { filters } = useFilterContext();
+
+  return (
+    <div style={{ marginBottom: '20px', fontSize: '14px', color: '#888', display: 'flex', gap: '3rem' }}>
+      {Object.entries(filters).map(([dimension, selectedValues]) => (
+        selectedValues.length > 0 && (
+          <div key={dimension} style={{ marginBottom: '5px' }}>
+            <strong>{dimension}:</strong> {selectedValues.join(', ')}
+          </div>
+        )
+      ))}
+    </div>
+  );
+};
 
 const githubRepo = 'https://github.com/TheEletricboy/reactjs-demo-expandable-table';
 
@@ -31,19 +51,24 @@ const Greeting = () => {
 };
 
 const App = () => {
+  const [ showTable, setShowTable ] = useState(false);
+
   const { addOverlay } = useOverlay();
   const [ t ] = useTranslation();
+
   const lblStartAssingment = t('homepage.start-assignment');
 
   const openOverlay = useCallback(() => {
     addOverlay({
       id: "start-overlay",
-      content: <div>Let's begin!</div>,
+      content: (removeOverlay) => (<Button label='Show Table' onClick={() => {
+        removeOverlay();
+        setShowTable(true);
+      }} />),
       isVisible: true,
       type: "modal",
       label: lblStartAssingment,
-      // onClose: () => console.log("some log test"),
-      // props: { animationType: "fade" }
+      // onClose: () => setShowTable(true),
     });
   }, [addOverlay, lblStartAssingment]);
 
@@ -53,6 +78,15 @@ const App = () => {
       <main className='main-app'>
         <Greeting/>
         <Button title='Begin the demo' label={lblStartAssingment} onClick={openOverlay} />
+        { showTable && (
+          <>
+            <h2>Filters</h2>
+            <MasterTableFilters/>
+            <h2>Master Table</h2>
+            <FilterSummary />
+            <MasterTable index={1}/>
+          </>
+        )}
         <OverlayContainer/>
       </main>
     </>

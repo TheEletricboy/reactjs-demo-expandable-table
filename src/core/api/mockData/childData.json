@@ -1,0 +1,112 @@
+[
+  {
+    "id": "bikes_1",
+    "parentId": "bikes",
+    "Article": "Harley Davidson",
+    "Region": "Berlin",
+    "LegalEntity": "11",
+    "Version": "Actual",
+    "Currency": "EUR",
+    "Measure": "Unit Price",
+    "Value": 1500
+  },
+  {
+    "id": "bikes_2",
+    "parentId": "bikes",
+    "Article": "Ducati",
+    "Region": "Munich",
+    "LegalEntity": "11",
+    "Version": "Actual",
+    "Currency": "EUR",
+    "Measure": "Unit Price",
+    "Value": 1500
+  },
+  {
+    "id": "bikes_3",
+    "parentId": "bikes",
+    "Article": "Kia",
+    "Region": "Berlin",
+    "LegalEntity": "11",
+    "Version": "Actual",
+    "Currency": "EUR",
+    "Measure": "Unit Price",
+    "Value": 1500
+  },
+  {
+    "id": "bikes_4",
+    "parentId": "bikes",
+    "Article": "SomeBikeBrand",
+    "Region": "Munich",
+    "LegalEntity": "11",
+    "Version": "Actual",
+    "Currency": "EUR",
+    "Measure": "Unit Price",
+    "Value": 1500
+  },
+  {
+    "id": "motorbikes_1",
+    "parentId": "motorbikes",
+    "Article": "Triumph",
+    "Region": "London",
+    "LegalEntity": "12",
+    "Version": "Budget",
+    "Currency": "USD",
+    "Measure": "Gross Revenue",
+    "Value": 4000
+  },
+  {
+    "id": "motorbikes_2",
+    "parentId": "motorbikes",
+    "Article": "Royal Enfield",
+    "Region": "Manchester",
+    "LegalEntity": "12",
+    "Version": "Budget",
+    "Currency": "USD",
+    "Measure": "Gross Revenue",
+    "Value": 5000
+  },
+  {
+    "id": "cars_0",
+    "parentId": "cars",
+    "Article": "Toyota",
+    "Region": "Chicago",
+    "LegalEntity": "58",
+    "Version": "Budget",
+    "Currency": "USD",
+    "Measure": "Car Price",
+    "Value": 15000
+  },
+  {
+    "id": "cars_1",
+    "parentId": "cars",
+    "Article": "Lamborguini",
+    "Region": "lil naples",
+    "LegalEntity": "3453",
+    "Version": "Budget",
+    "Currency": "USD",
+    "Measure": "Car Price",
+    "Value": 200000
+  },
+  {
+    "id": "cars_2",
+    "parentId": "cars",
+    "Article": "Kia",
+    "Region": "NY",
+    "LegalEntity": "44",
+    "Version": "Budget",
+    "Currency": "USD",
+    "Measure": "Car Price",
+    "Value": 12000
+  },
+  {
+    "id": "cars_3",
+    "parentId": "cars",
+    "Article": "Toyota",
+    "Region": "Chicago",
+    "LegalEntity": "58",
+    "Version": "Budget",
+    "Currency": "USD",
+    "Measure": "Single Car",
+    "Value": 5000
+  }
+]
