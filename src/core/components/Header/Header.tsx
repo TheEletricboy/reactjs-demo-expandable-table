@@ -2,7 +2,7 @@ import DarkThemeSwitcher from '../DarkTheme/DarkThemeSwitcher';
 import { LanguageSwitcher } from '../LanguageSwitcher/LanguageSwitcher';
 import './Header.scss';
 
-export const Header = () => {
+const Header = () => {
   return (
     <header className='main-header'>
       <DarkThemeSwitcher/>
@@ -10,3 +10,5 @@ export const Header = () => {
     </header>
   );
 };
+
+export default Header;

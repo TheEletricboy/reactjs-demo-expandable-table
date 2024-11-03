@@ -15,5 +15,13 @@
   },
   "overlays": {
     "close": "Fechar Overlay"
+  },
+  "generic": {
+    "loading": "Carregando"
+  },
+  "master-table": {
+    "default-title": "Tabela Mestre",
+    "filters": "Filtros",
+    "no-data": "Nenhum resultado encontrado"
   }
 }

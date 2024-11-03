@@ -1,10 +1,10 @@
-import { DataEntry } from '../components/MasterTable/types';
+import { DataEntry, TTableData } from '../components/MasterTable/types';
 import parentData from './mockData/parentData.json';
 import childData from './mockData/childData.json';
 
 const loadingDelay = 1000;
 
-export const loadParentData = (): Promise<DataEntry[]> => {
+export const loadParentData = (): Promise<TTableData> => {
   return new Promise((resolve) => {
     setTimeout(() => resolve(parentData), loadingDelay);
   });
@@ -13,23 +13,18 @@ export const loadParentData = (): Promise<DataEntry[]> => {
 export const loadChildData = (parentId: string): Promise<DataEntry[]> => {
   return new Promise((resolve) => {
     setTimeout(() => {
+      // The delay here is to mimic an over the network fetch.
       const children = childData.filter((child) => child.parentId === parentId);
       resolve(children);
     }, loadingDelay);
   });
 };
 
-export const getUniqueFilterOptions = (): { [key: string]: string[] } => {
-  // @TODO make this dynamic.
-  const dimensions:  (keyof DataEntry)[] = ["Article", "Region", "LegalEntity", "Version", "Currency", "Measure"];
-  // Use only parentData to generate filter options
-  const allData = parentData;
-
+export const getUniqueFilterOptions = (tableColumns: TTableData['tableColumns'], parentRowsData: TTableData['parentRows']): { [key: string]: string[] } => {
   const uniqueOptions: { [key: string]: string[] } = {};
-
-  dimensions.forEach((dimension) => {
+  tableColumns.forEach((dimension) => {
     uniqueOptions[dimension] = Array.from(
-      new Set(allData.map((entry) => entry[dimension] as string)),
+      new Set(parentRowsData.map((entry) => entry[dimension as keyof DataEntry] as string)),
     ).filter(Boolean);
   });
 

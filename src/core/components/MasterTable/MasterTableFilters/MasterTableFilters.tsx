@@ -1,26 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useFilterContext } from '../../../contexts/FilterContext';
 import { getUniqueFilterOptions } from '../../../api/dataService';
+import { useTableContext } from '../../../contexts/TableContext';
 import Button from '../../GenericButton/Button';
 import './MasterTableFilters.scss';
 
+const defaultLocalFilters = {};
+
 const MasterTableFilters: React.FC = () => {
   const { setFilters } = useFilterContext();
-  const [filterOptions, setFilterOptions] = useState<{ [key: string]: string[] }>({});
-  const [localFilters, setLocalFilters] = useState<{ [key: string]: string[] }>({
-    Article: [],
-    Region: [],
-    LegalEntity: [],
-    Version: [],
-    Currency: [],
-    Measure: [],
-  });
+  const { tableData, columnData, isLoading } = useTableContext();
+
+  const [filterOptions, setFilterOptions] = useState<{ [key: string]: string[] }>(defaultLocalFilters);
+  const [localFilters, setLocalFilters] = useState<{ [key: string]: string[] }>(defaultLocalFilters);
 
   useEffect(() => {
     // Fetch unique filter options for each dimension from parent data
-    const options = getUniqueFilterOptions();
+    const options = getUniqueFilterOptions(columnData, tableData);
     setFilterOptions(options);
-  }, []);
+  }, [columnData, tableData]);
 
   const handleChange = (dimension: string, selectedIds: string[]) => {
     setLocalFilters((prev) => ({
@@ -29,27 +27,16 @@ const MasterTableFilters: React.FC = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = useCallback(() => (e: React.FormEvent) => {
     e.preventDefault();
     console.log('FILTERS: ', JSON.stringify(localFilters));
-
-    // Update the filters in context
     setFilters(localFilters);
-  };
+  },[localFilters, setFilters]);
 
-  const handleReset = () => {
-    // Clear all selected filters
-    const resetFilters = {
-      Article: [],
-      Region: [],
-      LegalEntity: [],
-      Version: [],
-      Currency: [],
-      Measure: [],
-    };
-    setLocalFilters(resetFilters);
-    setFilters(resetFilters);
-  };
+  const handleReset = useCallback(() =>() => {
+    setLocalFilters(defaultLocalFilters);
+    setFilters(defaultLocalFilters);
+  }, [setFilters]);
 
   return (
     <form onSubmit={handleSubmit} className='main-filters' >
@@ -79,7 +66,10 @@ const MasterTableFilters: React.FC = () => {
         </div>
       ))}
       <button type="submit">Apply Filters</button>
-      <Button onClick={handleReset} style={{ marginLeft: '10px', backgroundColor: 'blue', color: 'white' }} label='reset'/>
+      <Button
+        onClick={handleReset}
+        disabled={isLoading}
+        style={{ marginLeft: '10px', backgroundColor: 'blue', color: 'white' }} label='reset'/>
     </form>
   );
 };

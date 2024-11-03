@@ -1,0 +1,17 @@
+
+.greeting {
+  max-width: 50%;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  margin-bottom: 5rem;
+
+  & .developer-name {
+    color: var(--alt-color1);
+  }
+}
+
+.github-link {
+  display: flex;
+  gap: 1.5rem;
+}

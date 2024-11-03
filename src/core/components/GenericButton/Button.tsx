@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { memo, SyntheticEvent, useCallback } from "react";
+import React, { memo, SyntheticEvent, useCallback } from "react";
 import './Button.scss';
 
 type TButtonProps = {
@@ -10,7 +10,7 @@ type TButtonProps = {
   children?: React.ReactNode;
   className?: string;
   onClick?: (event: SyntheticEvent) => void;
-}
+} & React.ButtonHTMLAttributes<HTMLButtonElement>
 
 /**
  * A generic button component with a certain amount of customization. Including something like JSX.

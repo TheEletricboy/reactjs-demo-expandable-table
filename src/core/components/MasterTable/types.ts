@@ -17,6 +17,11 @@ export type DataEntry = {
   Value: number;
 }
 
+export type TTableData = {
+  parentRows: DataEntry[];
+  tableColumns: string[];
+};
+
 export type Dimensions = {
   [key: string]: DimensionElement[];
 }

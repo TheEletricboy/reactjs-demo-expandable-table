@@ -15,5 +15,13 @@
   },
   "overlays": {
     "close": "Close Overlay"
+  },
+  "generic": {
+    "loading": "Loading"
+  },
+  "master-table": {
+    "default-title": "Master Table",
+    "filters": "Filters",
+    "no-data": "No Data Found"
   }
 }
