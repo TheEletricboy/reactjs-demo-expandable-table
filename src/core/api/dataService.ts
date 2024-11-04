@@ -2,7 +2,7 @@ import { DataEntry, TTableData } from '../components/MasterTable/types';
 import parentData from './mockData/parentData.json';
 import childData from './mockData/childData.json';
 
-const loadingDelay = 1000;
+const loadingDelay = 1500;
 
 export const loadParentData = (): Promise<TTableData> => {
   return new Promise((resolve) => {

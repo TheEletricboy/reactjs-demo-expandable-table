@@ -1,42 +1,36 @@
+@import '../../../scss/mixins.scss';
+
 :root {
-  --table-parent-alt-bg-color: var(--primary-color4);
-  --table-parent-bg-color: var(--primary-color0);
-  --table-parent-font-color: var(--primary-color4-contrast);
+  --table-th-outline-color: var(--alt-color1);
+  --table-th-font-color: var(--alt-color1-contrast);
+  --table-tbody-font-color: var(--primary-color0-contrast);
+  --table-border-radius: .5rem;
 }
 
-table {
-  outline: 2px solid rgb(34, 34, 34)
+.master-table {
+  outline: 1px solid rgba(var(--primary-color0-rgb), .3);
+  // min-height: 40rem;
+  border: 0;
+  border-spacing: 0;
+  box-shadow: var(--box-shadow-m);
+  border-radius: var(--table-border-radius);
+  // overflow: hidden;
+
+  & tbody {
+    background-color: var(--primary-color0);
+    color: var(--table-tbody-font-color);
+  }
+}
+
+.master-table.zebra-style {
+  @include zebra-rows();
 }
 
 th {
-  background-color: rgb(77, 13, 13);
-}
-
-tr {
-  &:not(.parent-row) {
-    padding: 0.2rem;
-    font-size: 0.8rem;
-    padding-left: 4rem !important;
-    padding-right: 1rem !important;
-  }
-
-  &.parent-row:nth-of-type(2n + 1) {
-    background-color: var(--table-parent-alt-bg-color);
-  }
-
-  &.table-child {
-    & td {
-      text-align: left;
-      padding: .1rem 10px .1rem 2rem;
-    }
-    background-color: var(--primary-color4-contrast);
-    color: var(--primary-color0-contrast);
-    opacity: 0.7;
-  }
-}
-
-table.table-2 {
-  position: absolute;
-  top: 20%;
-  left: 0;
+  padding: 1.5rem 3rem;
+  text-shadow: var(--box-shadow-m);
+  background-color: var(--table-th-outline-color);
+  color: var(--table-th-font-color);
+  font-size: 1.5rem;
+  outline: 1px solid grey;
 }

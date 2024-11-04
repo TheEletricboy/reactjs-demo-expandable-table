@@ -1,5 +1,5 @@
 import './MasterTable.scss';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useFilterContext } from '../../contexts/FilterContext';
 import { DataEntry } from './types';
 import { useTableContext } from '../../contexts/TableContext';
@@ -7,13 +7,19 @@ import MasterTableRow from './MasterTableRow/MasterTableRow';
 import MasterTableFilters from './MasterTableFilters/MasterTableFilters';
 import { FilterSummary } from '../FilterSummary/FilterSummary';
 import { useTranslation } from 'react-i18next';
+import Button from '../GenericButton/Button';
+import classNames from 'classnames';
 
 const MasterTable = ({index}: {index?: number}) => {
   const [filteredData, setFilteredData] = useState<DataEntry[]>([]);
-  const { isLoading: isParentRowsLoading, tableData, columnData } = useTableContext();
+  const [isTableStyleZebra, setTableStyleZebra] = useState(false);
   const { t } = useTranslation();
-
+  const { isLoading: isParentRowsLoading, tableData, columnData, fetchTableData } = useTableContext();
   const { filters } = useFilterContext();
+
+  useEffect(() => {
+    fetchTableData && fetchTableData();
+  }, [fetchTableData]);
 
   // Filter table data
   useEffect(() => {
@@ -23,13 +29,16 @@ const MasterTable = ({index}: {index?: number}) => {
         return Object.keys(filters).every((dimension) => {
           const selectedValues = filters[dimension];
           return (
-            selectedValues.length === 0 || selectedValues.includes(entry[dimension])
+            selectedValues.length === 0 ||
+            selectedValues.includes(entry[dimension as keyof DataEntry] as string)
           );
         });
       });
       setFilteredData(filteredData);
     }
   }, [tableData, filters]);
+
+  const handleChangeStyle = useCallback(() => setTableStyleZebra(prev => !prev), [setTableStyleZebra]);
 
   if (isParentRowsLoading) {
     return <div>{`${t('generic.loading')}...`}</div>;
@@ -45,18 +54,29 @@ const MasterTable = ({index}: {index?: number}) => {
       <MasterTableFilters/>
       <h2>{t('master-table.default-title')}</h2>
       <FilterSummary />
-      <table className={`table-${index}`}>
-        <thead>
-          <tr>
-            {columnData?.map((column, i) => (<th key={`${column}-${i}`}>{column}</th>))}
-          </tr>
-        </thead>
-        <tbody>
-          {filteredData.map((entry) => (
-            <MasterTableRow key={entry.id} entry={entry} />
-          ))}
-        </tbody>
-      </table>
+      <div>
+        <Button
+          className='master-table-style-switch'
+          title='Switch Table Style'
+          label='Switch Table Style'
+          onClick={handleChangeStyle}/>
+        <table className={classNames(
+          'master-table',
+          `table-${index}`,
+          {['zebra-style']: isTableStyleZebra},
+        )}>
+          <thead>
+            <tr>
+              {columnData?.map((column, i) => (<th key={`${column}-${i}`}>{column}</th>))}
+            </tr>
+          </thead>
+          <tbody>
+            {filteredData.map((entry) => (
+              <MasterTableRow key={entry.id} entry={entry} />
+            ))}
+          </tbody>
+        </table>
+      </div>
     </>
   );
 };

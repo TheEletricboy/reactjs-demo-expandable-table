@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
+import React, { createContext, useCallback, useContext, useMemo, useState } from "react";
 import { DataEntry, TTableData } from "../components/MasterTable/types";
 import { loadParentData } from "../api/dataService";
 
@@ -6,6 +6,7 @@ type TTableElement = {
   tableData: DataEntry[];
   columnData: string[];
   isLoading: boolean;
+  fetchTableData: () => void;
 } | null;
 
 export const TableContext = createContext<TTableElement>(null);
@@ -14,32 +15,24 @@ export const TableContextProvider = ({children}: {children: React.ReactNode}) =>
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState<TTableData | null>(null);
 
-  // Initial Data fetch
-  useEffect(() => {
+  const fetchTableData = useCallback(async() => {
     console.log("----FETCHING ParentRows");
-
     setIsLoading(true);
-    // just mimic fetching. It has a delay :D
-    const fetch = async() => {
-      await loadParentData().then((parentData) => {
-        // Since we're using `import` module syntax it auto parses json.
-        // if this was a https request we'd use JSON.parse(parentData).
-        setData(parentData);
-        setIsLoading(false);
-      });
-    };
-    fetch();
-
-    return () => {
+    await loadParentData().then((parentData) => {
+      // Since we're using `import` module syntax it auto parses json.
+      // if this was a https request we'd use JSON.parse(parentData).
+      setData(parentData);
       setIsLoading(false);
-    };
+    },
+    );
   }, []);
 
   const value = useMemo(() => ({
     isLoading,
     tableData: data?.parentRows || [],
     columnData: data?.tableColumns || [],
-  }), [data, isLoading]);
+    fetchTableData,
+  }), [data, isLoading, fetchTableData]);
   return (
     <TableContext.Provider value={value}>
       {children}

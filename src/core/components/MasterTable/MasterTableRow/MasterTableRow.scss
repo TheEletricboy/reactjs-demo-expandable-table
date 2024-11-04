@@ -1,0 +1,84 @@
+@import '../../../../scss/mixins.scss';
+
+:root {
+  --master-table-row-icon-rotation-default: rotate(-135deg);
+  --master-table-row-icon-rotation-expanded: rotate(-45deg);
+  --master-table-row-height: 3.5rem;
+  --master-table-row-parent-font-color: var(--primary-color4-contrast);
+  --master-table-row-parent-bg-color: var(--primary-color4);
+}
+
+.table-row {
+  // max-height: var(--master-table-row-height);
+  & td {
+    padding: .5rem 0 .2rem 0;
+    &:not(.td-w-expand-btn) {
+      padding-left: 2rem;
+    }
+  }
+}
+
+.parent-row {
+  @include hoverstate {
+    transform: translate(0.2rem);
+  };
+  background-color: var(--master-table-row-parent-bg-color);
+  color: var(--master-table-row-parent-font-color);
+  transition: transform  0.1s ease-in-out;
+  transform-origin: left;
+
+  & td {
+    padding: .9rem 0 .9rem 0;
+  }
+}
+
+.table-child {
+  & td {
+    padding: 0.2rem;
+    font-size: 0.8rem;
+    padding-left: 3rem !important;
+    padding-right: 1rem !important;
+  }
+}
+
+.td-w-expand-btn {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.expandable-icon {
+  position: relative;
+  vertical-align: top;
+  width: 1rem;
+  height: 1rem;
+  margin-left: 0.5rem;
+  
+  &:before {
+    content: '';
+    position: absolute;
+    top: 25%;
+    left: 0;
+    height: 0.5rem;
+    width: 0.5rem;
+    border: solid var(--master-table-row-parent-font-color);
+    border-width: 0 0 0.2rem 0.2rem;
+    transition: transform var(--transition-default);
+    -webkit-transform: var(--master-table-row-icon-rotation-default);
+    -moz-transform: var(--master-table-row-icon-rotation-default);
+    -ms-transform: var(--master-table-row-icon-rotation-default);
+    -o-transform: var(--master-table-row-icon-rotation-default);
+    transform: var(--master-table-row-icon-rotation-default);
+  }
+
+  &.expanded:before {
+    transition: transform var(--transition-default);
+    -webkit-transform: var(--master-table-row-icon-rotation-expanded);
+    -moz-transform: var(--master-table-row-icon-rotation-expanded);
+    -ms-transform: var(--master-table-row-icon-rotation-expanded);
+    -o-transform: var(--master-table-row-icon-rotation-expanded);
+    transform: var(--master-table-row-icon-rotation-expanded);
+  }
+}
+

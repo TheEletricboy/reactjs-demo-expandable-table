@@ -23,5 +23,10 @@
     "default-title": "Master Table",
     "filters": "Filters",
     "no-data": "No Data Found"
+  },
+  "error": {
+    "routes-header": "Oops!",
+    "routes-text": "Sorry, this page could not be found.",
+    "go-back": "Back Home"
   }
 }

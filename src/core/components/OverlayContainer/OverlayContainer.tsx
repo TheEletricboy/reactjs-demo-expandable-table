@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useOverlay } from '../../contexts/OverlayContext';
-import { CloseIcon } from '../CloseIcon/CloseIcon';
+import GenericIcon from '../GenericIcon/GenericIcon';
 import { useTranslation } from 'react-i18next';
 import './OverlayContainer.scss';
 
@@ -29,7 +29,7 @@ export const OverlayContainer = () => {
             title={lblCloseOverlay}>
           </div>
           <div className='overlay'>
-            <CloseIcon onClick={handleRemoveOverlay} title={lblCloseOverlay}/>
+            <GenericIcon onClick={handleRemoveOverlay} title={lblCloseOverlay}/>
             <div className='overlay-header'>
               <div className='label'>{overlay.label ?? defaultLabel}</div>
             </div>

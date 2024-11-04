@@ -1,12 +1,17 @@
 .dark-theme {
   // By simply inverting the main colours we can make sure there's minimal to no bugs when switching
   // to a dark theme on all components. As long as they follow the css global var philosophy.
+  // Some colours are being overridden but have the same exact value. This is for readability (minimal performance impact)
   --primary-color0: #ffffff;
   --primary-color0-rgb: 255, 255, 255;
   --primary-color1: #cecece;
 
+  --primary-color4: #3c3c3c;
+  --primary-color4-contrast: var(--primary-color0);
+
   --primary-color0-contrast: #1b1818;
   --primary-color1-contrast: #3d3d3d;
 
-  --alt-color1-contrast: var(--primary-color0-contrast);
+  --alt-color1: #962433;
+  --alt-color1-contrast: var(--primary-color0);
 }

@@ -23,5 +23,10 @@
     "default-title": "Tabela Mestre",
     "filters": "Filtros",
     "no-data": "Nenhum resultado encontrado"
+  },
+  "error": {
+    "routes-header": "Oops!",
+    "routes-text": "Desculpe, não foi possível encontrar esta página.",
+    "go-back": "Retornar"
   }
 }

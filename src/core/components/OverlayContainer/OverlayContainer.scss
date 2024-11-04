@@ -43,7 +43,7 @@
   border-radius: var(--overlay-border-radius);
   padding: var(--overlay-padding);
   border: 1px solid var(--primary-color0);
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  box-shadow: var(--box-shadow-default);
   display: flex;
   justify-content: flex-start;
   align-items: center;

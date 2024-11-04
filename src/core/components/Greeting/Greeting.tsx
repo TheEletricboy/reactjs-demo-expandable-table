@@ -1,11 +1,32 @@
 import './Greeting.scss';
+import { useCallback } from 'react';
+import { useOverlay } from '../../contexts/OverlayContext';
 import { useTranslation } from "react-i18next";
+import Button from '../GenericButton/Button';
+import { useNavigate } from 'react-router-dom';
 
 const githubRepo = 'https://github.com/TheEletricboy/reactjs-demo-expandable-table';
+const startOverlayId = "start-overlay";
 
-// Unnecessary to put this in its own file imo, it's a simple greeting and it achieves its goal.
 const Greeting = () => {
+  const navigate = useNavigate();
   const { t } = useTranslation();
+  const { addOverlay } = useOverlay();
+  const lblStartAssingment = t('homepage.start-assignment');
+
+  const openOverlay = useCallback(() => {
+    addOverlay({
+      id: startOverlayId,
+      content: (removeOverlay) => (<Button label='Show Table' onClick={() => {
+        removeOverlay();
+        navigate(`/table/${startOverlayId}`);
+      }} />),
+      isVisible: true,
+      type: "modal",
+      label: lblStartAssingment,
+    });
+  }, [addOverlay, lblStartAssingment, navigate]);
+
   return (
     <section className='greeting'>
       <h1>
@@ -21,6 +42,7 @@ const Greeting = () => {
           </span>
         </p>
       </h3>
+      <Button title='Begin the demo' label={lblStartAssingment} onClick={openOverlay} />
     </section>
   );
 };

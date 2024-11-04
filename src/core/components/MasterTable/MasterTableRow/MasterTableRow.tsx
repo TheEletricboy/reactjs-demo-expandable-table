@@ -1,7 +1,10 @@
+import './MasterTableRow.scss';
 import { memo, useCallback, useState } from 'react';
 import { loadChildData } from '../../../api/dataService';
 import { DataEntry } from '../types';
 import { useTranslation } from 'react-i18next';
+import GenericIcon from '../../GenericIcon/GenericIcon';
+import classNames from 'classnames';
 
 type MasterTableRowProps = {
   entry: DataEntry;
@@ -30,16 +33,17 @@ const CuratedDataEntry = ({
     .map((key, i) => {
       if (i === 0 && shouldAddExpandButton) {
         return (
-          <td key={key}>
-            <button onClick={handleExpandClick}>
-              {isExpanded ? '-' : '+'}
-            </button>
+          <td key={key} className='td-w-expand-btn' onClick={handleExpandClick}>
+            <GenericIcon className={classNames(
+              'expandable-icon',
+              {['expanded']: isExpanded},
+            )}/>
             {entry[key as keyof DataEntry]}
           </td>
         );
       };
       return (
-        <td key={key}>{entry[key as keyof DataEntry]}</td>
+        <td key={key} onClick={handleExpandClick}>{entry[key as keyof DataEntry]}</td>
       );
     }) || null
 );
@@ -51,6 +55,7 @@ const MasterTableRow = ({ entry }: MasterTableRowProps) => {
   const { t } = useTranslation();
 
   const handleExpandClick = useCallback(async() => {
+    setIsExpanded(prev => !prev);
     if (!isExpanded) {
       setIsLoading(true);
       // Load child data for the given parent ID
@@ -59,12 +64,11 @@ const MasterTableRow = ({ entry }: MasterTableRowProps) => {
         setIsLoading(false);
       });
     }
-    setIsExpanded(prev => !prev);
   }, [entry.id, isExpanded]);
 
   return (
     <>
-      <tr className='parent-row'>
+      <tr className={classNames('parent-row', 'table-row')}>
         <CuratedDataEntry
           entry={entry}
           handleExpandClick={handleExpandClick}
@@ -72,12 +76,12 @@ const MasterTableRow = ({ entry }: MasterTableRowProps) => {
           shouldAddExpandButton/>
       </tr>
       { isLoading && (
-        <tr className='table-child'>
+        <tr className={classNames('table-child', 'table-row')}>
           <td>{`${t('generic.loading')}...`}</td>
         </tr>
       )}
       {isExpanded && !isLoading && children.map((child) => (
-        <tr className='table-child' key={child.id}>
+        <tr className={classNames('table-child', 'table-row')} key={child.id}>
           <CuratedDataEntry
             propertiesToIgnore={['id', 'parentId']}
             entry={child}/>

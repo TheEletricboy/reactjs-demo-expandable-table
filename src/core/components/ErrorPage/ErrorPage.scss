@@ -1,0 +1,9 @@
+@import '../../../scss/mixins.scss';
+
+#error-page {
+  @include flex-it-all();
+}
+
+.go-back-btn {
+  margin-top: 2rem;
+}

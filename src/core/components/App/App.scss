@@ -3,6 +3,7 @@
 .main-app {
   height: 100%;
   width: 100vw;
+  flex-grow: 1;
 
   background-color: var(--primary-color0-contrast);
   color: var(--primary-color0);
