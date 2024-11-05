@@ -1,5 +1,21 @@
+@import '../../../scss/mixins.scss';
+
 .main-header {
   display: flex;
   background-color: var(--primary-color0-contrast);
   transition: background-color var(--transition-medium);
+}
+
+.main-header-logo {
+  @include hoverstate {
+    background-color: color-mix(in srgb, var(--alt-color3) 30%, transparent);
+  };
+  width: 7rem;
+  margin: 1rem;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: center;
+  border: 1px solid var(--alt-color3);
+  border-radius: .9rem;
+  transition: background-color var(--transition-default);
 }

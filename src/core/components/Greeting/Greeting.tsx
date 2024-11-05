@@ -19,7 +19,7 @@ const Greeting = () => {
       id: startOverlayId,
       content: (removeOverlay) => (<Button label='Show Table' onClick={() => {
         removeOverlay();
-        navigate(`/table/${startOverlayId}`);
+        navigate('/table/randomTableName-0');
       }} />),
       isVisible: true,
       type: "modal",
