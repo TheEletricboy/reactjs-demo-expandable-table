@@ -1,10 +1,23 @@
+.main-filters-wrapper {
+  // DEV
+  border: 1px solid var(--primary-color1);
+
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 .main-filters {
   width: 100%;
   display: flex;
   justify-content: center;
   flex-direction: row;
   gap: 1rem;
-  padding: 0 4rem;
+}
+
+.filters-form-container {
+  display: flex;
 }
 
 .filter-option {

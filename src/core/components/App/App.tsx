@@ -10,7 +10,7 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Greeting/>} />
         {/** Has an index for development, wanted to see if I could make a TablesControllerContext */}
-        <Route path='/table/:tableId' element={<MasterTable index={1}/>} />
+        <Route path='/table/:tableId' element={<MasterTable index={1} tableName={'Custom Table Name'}/>} />
         <Route path='*' element={<ErrorPage/>} />
       </Routes>
     </main>

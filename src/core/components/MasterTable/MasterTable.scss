@@ -7,20 +7,48 @@
   --table-border-radius: .5rem;
 }
 
+.loading-wrapper {
+  @include flex-it-all();
+  height: 10rem;
+}
+
+.master-table-name {
+  margin: 0 0 2rem;
+}
+
+.master-table-wrapper {
+  border: 1px solid blueviolet;
+
+  margin: 0 5rem;
+  padding: 1rem;
+  border-radius: var(--table-border-radius);
+  box-shadow: var(--box-shadow-m);
+  background-color: var(--primary-color1-contrast);
+  min-width: 80rem;
+}
+
 .master-table-container {
-  width: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+
+  & .no-data {
+    margin-top: 1rem;
+    text-align: center;
+  }
+}
+
+.main-content {
+  display: flex;
+  justify-content: flex-start;
+  flex: 1;
 }
 
 .master-table {
   outline: 1px solid rgba(var(--primary-color0-rgb), .3);
-  width: 80%;
+  width: 100%;
   border: 0;
   border-spacing: 0;
   overflow: hidden;
-  box-shadow: var(--box-shadow-m);
-  border-radius: var(--table-border-radius);
 
   & tbody {
     background-color: var(--primary-color0);

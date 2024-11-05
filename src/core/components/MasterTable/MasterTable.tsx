@@ -5,15 +5,17 @@ import { DataEntry } from './types';
 import { useTableContext } from '../../contexts/TableContext';
 import MasterTableRow from './MasterTableRow/MasterTableRow';
 import MasterTableFilters from './MasterTableFilters/MasterTableFilters';
-import { FilterSummary } from '../FilterSummary/FilterSummary';
 import { useTranslation } from 'react-i18next';
 import Button from '../GenericButton/Button';
 import classNames from 'classnames';
+import LoaderSpinner from '../LoaderSpinner/LoaderSpinner';
 
 const zebraEmoji = '🦓';
 
-const MasterTable = ({index}: {index?: number}) => {
+const MasterTable = ({index, tableName}: {index?: number, tableName: string;}) => {
   const [filteredData, setFilteredData] = useState<DataEntry[]>([]);
+
+  console.log('🚀 ~ MasterTable ~ filteredData:', filteredData);
   const { t } = useTranslation();
   const {
     isLoading: isParentRowsLoading,
@@ -46,45 +48,53 @@ const MasterTable = ({index}: {index?: number}) => {
     }
   }, [tableData, filters]);
 
-  if (isParentRowsLoading) {
-    return <div>{`${t('generic.loading')}...`}</div>;
-  }
-
-  if (filteredData.length === 0) {
-    return <div>{t('master-table.no-data')}</div>;
-  }
-
   return (
-    <>
-      <h2>{t('master-table.filters')}</h2>
+    <div className='master-table-wrapper'>
+      <h2 className='master-table-name'>{tableName ?? t('master-table.default-title')}</h2>
       <MasterTableFilters/>
-      <h2>{t('master-table.default-title')}</h2>
-      <FilterSummary />
-      <div className='master-table-container'>
-        <Button
-          className='master-table-style-switch'
-          title='Switch Table Style'
-          label={zebraEmoji}
-          onClick={toggleStyle}
-          isInverse={!isZebraStyle}/>
-        <table className={classNames(
-          'master-table',
-          `table-${index}`,
-          {['zebra-style']: isZebraStyle},
-        )}>
-          <thead>
-            <tr>
-              {columnData?.map((column, i) => (<th key={`${column}-${i}`}>{column}</th>))}
-            </tr>
-          </thead>
-          <tbody>
-            {filteredData.map((entry) => (
-              <MasterTableRow key={entry.id} entry={entry} />
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </>
+      {
+        isParentRowsLoading ? (
+          <div className='loading-wrapper'>
+            <LoaderSpinner/>
+          </div>
+        ) : (
+          <div className='master-table-container'>
+            <div className='main-content'>
+              <Button
+                className='master-table-style-switch'
+                title='Switch Table Style'
+                label={zebraEmoji}
+                onClick={toggleStyle}
+                isInverse={!isZebraStyle}/>
+              <table className={classNames(
+                'master-table',
+                `table-${index}`,
+                {['zebra-style']: isZebraStyle},
+              )}>
+                <thead>
+                  <tr>
+                    {columnData?.map((column, i, arr) => (
+                      <th key={`${column}-${i}`}>
+                        {column}
+                        {i === arr.length -1 && (
+                          <button onClick={fetchTableData}>reload</button>
+                        )}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredData.map((entry) => (
+                    <MasterTableRow key={entry.id} entry={entry} />
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            {filteredData.length === 0 && (<span className='no-data'>{t('master-table.no-data')}</span>)}
+          </div>
+        )
+      }
+    </div>
   );
 };
 

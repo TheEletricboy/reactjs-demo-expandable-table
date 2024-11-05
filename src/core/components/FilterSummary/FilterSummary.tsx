@@ -1,16 +1,30 @@
-import { useFilterContext } from "../../contexts/FilterContext";
+import './FilterSummary.scss';
 
-export const FilterSummary= () => {
+import React, { memo } from "react";
+import { useFilterContext } from "../../contexts/FilterContext";
+import classNames from 'classnames';
+
+const Label = ({children, className}: {children: React.ReactNode, className?: string}) => (
+  <div className={classNames('generic-label', className)}>
+    {children}
+  </div>
+);
+
+const FilterSummary= () => {
   const { filters } = useFilterContext();
   return (
-    <div style={{ marginBottom: '20px', fontSize: '14px', color: '#888', display: 'flex', gap: '3rem' }}>
-      {Object.entries(filters).map(([dimension, selectedValues]) => (
-        selectedValues.length > 0 && (
-          <div key={dimension} style={{ marginBottom: '5px' }}>
-            <strong>{dimension}:</strong> {selectedValues.join(', ')}
-          </div>
-        )
-      ))}
+    <div className="filter-summary">
+      {Object
+        .entries(filters)
+        .map(([dimension, selectedValues]) => (
+          selectedValues.length > 0 && (
+            <Label key={dimension} className="">
+              <strong>{dimension}:</strong> {selectedValues.join(', ')}
+            </Label>
+          )
+        ))}
     </div>
   );
 };
+
+export default memo(FilterSummary);
