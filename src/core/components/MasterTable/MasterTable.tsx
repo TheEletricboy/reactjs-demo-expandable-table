@@ -1,5 +1,5 @@
 import './MasterTable.scss';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useFilterContext } from '../../contexts/FilterContext';
 import { DataEntry } from './types';
 import { useTableContext } from '../../contexts/TableContext';
@@ -9,13 +9,13 @@ import { useTranslation } from 'react-i18next';
 import Button from '../GenericButton/Button';
 import classNames from 'classnames';
 import LoaderSpinner from '../LoaderSpinner/LoaderSpinner';
+import RefreshIcon from '../../../svgs/refresh.svg?react';
+import { replaceWhiteSpace } from '../../utils/utils';
 
 const zebraEmoji = '🦓';
 
 const MasterTable = ({index, tableName}: {index?: number, tableName: string;}) => {
   const [filteredData, setFilteredData] = useState<DataEntry[]>([]);
-
-  console.log('🚀 ~ MasterTable ~ filteredData:', filteredData);
   const { t } = useTranslation();
   const {
     isLoading: isParentRowsLoading,
@@ -25,22 +25,21 @@ const MasterTable = ({index, tableName}: {index?: number, tableName: string;}) =
     toggleStyle,
     isZebraStyle,
   } = useTableContext();
-  const { filters } = useFilterContext();
+  const { filters, resetFilters } = useFilterContext();
 
   useEffect(() => {
-    fetchTableData && fetchTableData();
+    fetchTableData?.();
   }, [fetchTableData]);
 
   // Filter table data
   useEffect(() => {
     if (tableData.length && filters) {
-      console.log("----APPLYING FILTERS");
       const filteredData = tableData.filter((entry) => {
         return Object.keys(filters).every((dimension) => {
           const selectedValues = filters[dimension];
           return (
             selectedValues.length === 0 ||
-            selectedValues.includes(entry[dimension as keyof DataEntry] as string)
+            selectedValues.includes(entry[replaceWhiteSpace(dimension) as keyof DataEntry] as string)
           );
         });
       });
@@ -48,9 +47,21 @@ const MasterTable = ({index, tableName}: {index?: number, tableName: string;}) =
     }
   }, [tableData, filters]);
 
+  const reloadAndReset = useCallback(() => {
+    fetchTableData?.();
+    resetFilters?.();
+  }, [fetchTableData, resetFilters]);
+
   return (
     <div className='master-table-wrapper'>
-      <h2 className='master-table-name'>{tableName ?? t('master-table.default-title')}</h2>
+      <div className='master-table-top-info'>
+        <h2 className='master-table-name'>{tableName ?? t('master-table.default-title')}</h2>
+        <RefreshIcon
+          role='button'
+          className='header-refresh-icon'
+          onClick={reloadAndReset}
+          title={t('table.reload')}/>
+      </div>
       <MasterTableFilters/>
       {
         isParentRowsLoading ? (
@@ -73,12 +84,9 @@ const MasterTable = ({index, tableName}: {index?: number, tableName: string;}) =
               )}>
                 <thead>
                   <tr>
-                    {columnData?.map((column, i, arr) => (
+                    {columnData?.map((column, i) => (
                       <th key={`${column}-${i}`}>
                         {column}
-                        {i === arr.length -1 && (
-                          <button onClick={fetchTableData}>reload</button>
-                        )}
                       </th>
                     ))}
                   </tr>

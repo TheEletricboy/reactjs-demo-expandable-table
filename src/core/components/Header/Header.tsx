@@ -1,10 +1,10 @@
 import './Header.scss';
+import Logo0 from '../../../svgs/primteit-main0.svg?react';
+import Logo1 from '../../../svgs/primteit-main1.svg?react';
 import { useNavigate } from 'react-router-dom';
 import DarkThemeSwitcher from '../DarkTheme/DarkThemeSwitcher';
 import { LanguageSwitcher } from '../LanguageSwitcher/LanguageSwitcher';
 import { useCallback } from 'react';
-import Logo0 from '../../../../public/primteit-main0.svg?react';
-import Logo1 from '../../../../public/primteit-main1.svg?react';
 
 const Header = () => {
   const navigate = useNavigate();

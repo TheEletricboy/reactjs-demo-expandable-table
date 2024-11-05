@@ -1,6 +1,7 @@
 import { DataEntry, TTableData } from '../components/MasterTable/types';
 import parentData from './mockData/parentData.json';
 import childData from './mockData/childData.json';
+import { replaceWhiteSpace } from '../utils/utils';
 
 const loadingDelay = 1500;
 
@@ -24,7 +25,7 @@ export const getUniqueFilterOptions = (tableColumns: TTableData['tableColumns'],
   const uniqueOptions: { [key: string]: string[] } = {};
   tableColumns.forEach((dimension) => {
     uniqueOptions[dimension] = Array.from(
-      new Set(parentRowsData.map((entry) => entry[dimension as keyof DataEntry] as string)),
+      new Set(parentRowsData.map((entry) => entry[replaceWhiteSpace(dimension) as keyof DataEntry] as string)),
     ).filter(Boolean);
   });
 

@@ -1,7 +1,4 @@
 .main-filters-wrapper {
-  // DEV
-  border: 1px solid var(--primary-color1);
-
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -18,9 +15,4 @@
 
 .filters-form-container {
   display: flex;
-}
-
-.filter-option {
-  position: relative;
-  top: 0;
 }

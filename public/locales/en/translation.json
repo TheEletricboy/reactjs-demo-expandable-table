@@ -21,12 +21,17 @@
   },
   "master-table": {
     "default-title": "Master Table",
-    "filters": "Filters",
     "no-data": "No Data Found"
   },
   "error": {
     "routes-header": "Oops!",
     "routes-text": "Sorry, this page could not be found.",
     "go-back": "Back Home"
+  },
+  "table": {
+    "select": "Select {{dimension}}",
+    "apply-filters": "Apply Filters",
+    "reset-filters": "Reset",
+    "reload": "Reload Data"
   }
 }

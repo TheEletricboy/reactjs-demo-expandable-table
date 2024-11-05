@@ -7,23 +7,30 @@
   --table-border-radius: .5rem;
 }
 
+.header-refresh-icon {
+  @include hoverstate();
+  width: 1.5rem;
+}
+
 .loading-wrapper {
   @include flex-it-all();
   height: 10rem;
 }
 
-.master-table-name {
+.master-table-top-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin: 0 0 2rem;
 }
 
 .master-table-wrapper {
-  border: 1px solid blueviolet;
-
+  border: 1px solid var(--alt-color1);
   margin: 0 5rem;
   padding: 1rem;
   border-radius: var(--table-border-radius);
   box-shadow: var(--box-shadow-m);
-  background-color: var(--primary-color1-contrast);
+  background-color: color-mix(in srgb, var(--primary-color1-contrast) 50%, transparent);
   min-width: 80rem;
 }
 

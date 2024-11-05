@@ -19,7 +19,7 @@ export const TableContextProvider = ({children}: {children: React.ReactNode}) =>
   const [data, setData] = useState<TTableData | null>(null);
 
   const fetchTableData = useCallback(async() => {
-    console.log("----FETCHING ParentRows");
+    console.info("----FETCHING ParentRows");
     setIsLoading(true);
     await loadParentData().then((parentData) => {
       // Since we're using `import` module syntax it auto parses json.

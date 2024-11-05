@@ -10,6 +10,7 @@
   @include hoverstate {
     background-color: color-mix(in srgb, var(--alt-color3) 30%, transparent);
   };
+  background-color: black; // on purpose.
   width: 7rem;
   margin: 1rem;
   padding: 0 1rem;
