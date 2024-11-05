@@ -4,12 +4,14 @@
   --master-table-row-icon-rotation-default: rotate(-135deg);
   --master-table-row-icon-rotation-expanded: rotate(-45deg);
   --master-table-row-height: 3.5rem;
-  --master-table-row-parent-font-color: var(--primary-color4-contrast);
-  --master-table-row-parent-bg-color: var(--primary-color4);
+
+  // Parent Rows
+  --master-table-row-parent-font-color: var(--primary-color3-contrast);
+  --master-table-row-parent-bg-color: var(--primary-color3);
+  --master-table-row-parent-bg-color-contrast: var(--primary-color3-contrast);
 }
 
 .table-row {
-  // max-height: var(--master-table-row-height);
   & td {
     padding: .5rem 0 .2rem 0;
     &:not(.td-w-expand-btn) {
@@ -24,7 +26,9 @@
   };
   background-color: var(--master-table-row-parent-bg-color);
   color: var(--master-table-row-parent-font-color);
-  transition: transform  0.1s ease-in-out;
+  outline: 1px solid var(--master-table-row-parent-bg-color-contrast);
+  outline-offset: -0.5px;
+  transition: transform  0.1s ease-in-out, color var(--transition-default), background-color var(--transition-default);
   transform-origin: left;
 
   & td {
@@ -38,6 +42,8 @@
     font-size: 0.8rem;
     padding-left: 3rem !important;
     padding-right: 1rem !important;
+    background-color: var(--alt-color2);
+    color: var(--alt-color2-contrast);
   }
 }
 

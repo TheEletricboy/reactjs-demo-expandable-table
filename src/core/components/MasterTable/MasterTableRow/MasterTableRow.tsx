@@ -2,9 +2,9 @@ import './MasterTableRow.scss';
 import { memo, useCallback, useState } from 'react';
 import { loadChildData } from '../../../api/dataService';
 import { DataEntry } from '../types';
-import { useTranslation } from 'react-i18next';
 import GenericIcon from '../../GenericIcon/GenericIcon';
 import classNames from 'classnames';
+import LoaderSpinner from '../../LoaderSpinner/LoaderSpinner';
 
 type MasterTableRowProps = {
   entry: DataEntry;
@@ -16,6 +16,7 @@ type TCuratedDataEntry = {
   shouldAddExpandButton?: boolean;
   isExpanded?: boolean;
   propertiesToIgnore?: string[];
+  isLoading?: boolean;
 };
 
 const defaultPropsToIgnore = ['id'];
@@ -27,10 +28,12 @@ const CuratedDataEntry = ({
   shouldAddExpandButton = false,
   isExpanded,
   propertiesToIgnore = defaultPropsToIgnore,
+  isLoading,
 }: TCuratedDataEntry) => (
   Object.keys(entry)
     .filter((key) => !propertiesToIgnore?.includes(key))
     .map((key, i) => {
+      // adds the expand button to first td
       if (i === 0 && shouldAddExpandButton) {
         return (
           <td key={key} className='td-w-expand-btn' onClick={handleExpandClick}>
@@ -38,10 +41,13 @@ const CuratedDataEntry = ({
               'expandable-icon',
               {['expanded']: isExpanded},
             )}/>
+            {isLoading && (<LoaderSpinner/>)}
             {entry[key as keyof DataEntry]}
           </td>
         );
       };
+
+      // td for the rest
       return (
         <td key={key} onClick={handleExpandClick}>{entry[key as keyof DataEntry]}</td>
       );
@@ -52,7 +58,6 @@ const MasterTableRow = ({ entry }: MasterTableRowProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [children, setChildren] = useState<DataEntry[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const { t } = useTranslation();
 
   const handleExpandClick = useCallback(async() => {
     setIsExpanded(prev => !prev);
@@ -73,13 +78,9 @@ const MasterTableRow = ({ entry }: MasterTableRowProps) => {
           entry={entry}
           handleExpandClick={handleExpandClick}
           isExpanded={isExpanded}
+          isLoading={isLoading}
           shouldAddExpandButton/>
       </tr>
-      { isLoading && (
-        <tr className={classNames('table-child', 'table-row')}>
-          <td>{`${t('generic.loading')}...`}</td>
-        </tr>
-      )}
       {isExpanded && !isLoading && children.map((child) => (
         <tr className={classNames('table-child', 'table-row')} key={child.id}>
           <CuratedDataEntry

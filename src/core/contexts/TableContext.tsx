@@ -7,12 +7,15 @@ type TTableElement = {
   columnData: string[];
   isLoading: boolean;
   fetchTableData: () => void;
+  toggleStyle: () => void;
+  isZebraStyle: boolean;
 } | null;
 
 export const TableContext = createContext<TTableElement>(null);
 
 export const TableContextProvider = ({children}: {children: React.ReactNode}) => {
   const [isLoading, setIsLoading] = useState(false);
+  const [tableStyle, setTableStyle] = useState('');
   const [data, setData] = useState<TTableData | null>(null);
 
   const fetchTableData = useCallback(async() => {
@@ -27,12 +30,17 @@ export const TableContextProvider = ({children}: {children: React.ReactNode}) =>
     );
   }, []);
 
+  const toggleTableStyle = useCallback(() => setTableStyle(prev => prev === 'zebra' ? '' : 'zebra'), []);
+  const isZebraStyle = useMemo(() => tableStyle === 'zebra', [tableStyle]);
+
   const value = useMemo(() => ({
     isLoading,
     tableData: data?.parentRows || [],
     columnData: data?.tableColumns || [],
     fetchTableData,
-  }), [data, isLoading, fetchTableData]);
+    toggleStyle: toggleTableStyle,
+    isZebraStyle,
+  }), [isLoading, data?.parentRows, data?.tableColumns, fetchTableData, toggleTableStyle, isZebraStyle]);
   return (
     <TableContext.Provider value={value}>
       {children}

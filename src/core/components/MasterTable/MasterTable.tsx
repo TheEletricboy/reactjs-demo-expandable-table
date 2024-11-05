@@ -1,5 +1,5 @@
 import './MasterTable.scss';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useFilterContext } from '../../contexts/FilterContext';
 import { DataEntry } from './types';
 import { useTableContext } from '../../contexts/TableContext';
@@ -10,11 +10,19 @@ import { useTranslation } from 'react-i18next';
 import Button from '../GenericButton/Button';
 import classNames from 'classnames';
 
+const zebraEmoji = '🦓';
+
 const MasterTable = ({index}: {index?: number}) => {
   const [filteredData, setFilteredData] = useState<DataEntry[]>([]);
-  const [isTableStyleZebra, setTableStyleZebra] = useState(false);
   const { t } = useTranslation();
-  const { isLoading: isParentRowsLoading, tableData, columnData, fetchTableData } = useTableContext();
+  const {
+    isLoading: isParentRowsLoading,
+    tableData,
+    columnData,
+    fetchTableData,
+    toggleStyle,
+    isZebraStyle,
+  } = useTableContext();
   const { filters } = useFilterContext();
 
   useEffect(() => {
@@ -38,8 +46,6 @@ const MasterTable = ({index}: {index?: number}) => {
     }
   }, [tableData, filters]);
 
-  const handleChangeStyle = useCallback(() => setTableStyleZebra(prev => !prev), [setTableStyleZebra]);
-
   if (isParentRowsLoading) {
     return <div>{`${t('generic.loading')}...`}</div>;
   }
@@ -54,16 +60,17 @@ const MasterTable = ({index}: {index?: number}) => {
       <MasterTableFilters/>
       <h2>{t('master-table.default-title')}</h2>
       <FilterSummary />
-      <div>
+      <div className='master-table-container'>
         <Button
           className='master-table-style-switch'
           title='Switch Table Style'
-          label='Switch Table Style'
-          onClick={handleChangeStyle}/>
+          label={zebraEmoji}
+          onClick={toggleStyle}
+          isInverse={!isZebraStyle}/>
         <table className={classNames(
           'master-table',
           `table-${index}`,
-          {['zebra-style']: isTableStyleZebra},
+          {['zebra-style']: isZebraStyle},
         )}>
           <thead>
             <tr>

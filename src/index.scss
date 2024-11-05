@@ -30,18 +30,22 @@
   --primary-color0-rgb: 17, 17, 17;
   --primary-color1: #3d3d3d;
   --primary-color1-contrast: #cecece;
+  --primary-color3: #9e9e9e;
+  --primary-color3-contrast: var(--primary-color0);
   --primary-color4: #b3b3b3;
   --primary-color4-contrast: var(--primary-color0);
 
   --alt-color1: #962433;
   --alt-color1-contrast: var(--primary-color0-contrast);
+  --alt-color2: #bfb4b5;
+  --alt-color2-contrast: var(--primary-color0);
 
   --transition-time-xs: 0.3s;
   --transition-time-m: 1s;
   --transition-default: var(--transition-time-xs) ease-in-out;
   --transition-medium: var(--transition-time-m) ease-in-out;
 
-  --box-shadow-default: rgba(var(--primary-color0-rgb), 0.2) 0 .5rem 1rem 0;
+  --box-shadow-default: rgba(var(--primary-color0-rgb), 0.2) -0.4rem .2rem .7rem 0;
   --box-shadow-m: rgba(var(--primary-color0-rgb), 0.2) 0 .1rem 2rem 0;
 }
 

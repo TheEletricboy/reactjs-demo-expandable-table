@@ -7,14 +7,20 @@
   --table-border-radius: .5rem;
 }
 
+.master-table-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .master-table {
   outline: 1px solid rgba(var(--primary-color0-rgb), .3);
-  // min-height: 40rem;
+  width: 80%;
   border: 0;
   border-spacing: 0;
+  overflow: hidden;
   box-shadow: var(--box-shadow-m);
   border-radius: var(--table-border-radius);
-  // overflow: hidden;
 
   & tbody {
     background-color: var(--primary-color0);
@@ -27,10 +33,10 @@
 }
 
 th {
-  padding: 1.5rem 3rem;
+  padding: 1.5rem 1.5rem 1.5rem 1%;
+  text-align: left;
   text-shadow: var(--box-shadow-m);
   background-color: var(--table-th-outline-color);
   color: var(--table-th-font-color);
   font-size: 1.5rem;
-  outline: 1px solid grey;
 }

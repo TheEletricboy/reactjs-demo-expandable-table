@@ -53,7 +53,8 @@
 
 @mixin zebra-rows {
   tr.parent-row:nth-child(even) {
-    --master-table-row-parent-font-color: var(--primary-color0-contrast);
-    --master-table-row-parent-bg-color: var(--primary-color0);
+    --master-table-row-parent-font-color: var(--primary-color1-contrast);
+    --master-table-row-parent-bg-color: var(--primary-color1);
+    --loader-border-bg-color: var(--primary-color1-contrast);
   };
 }
