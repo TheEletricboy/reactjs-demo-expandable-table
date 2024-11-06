@@ -4,7 +4,9 @@
     "greeting-developer": "Miguel Vieira.",
     "greeting-description-1": "Foi-me pedido para realizar um teste técnico pela PrimeIt. Como tal, esta aplicação em ReactJS alinha-se com os critérios de aceitação iniciais e também demonstra um pouco o meu conhecimento no que toca a arquitetura de projetos e futuras considerações no mesmo.",
     "greeting-description-2": "Foram adicionadas várias features na aplicação final - e também configurações e regras úteis durante o desenvolvimento. Uma lista pode ser encontrada no repositório deste projeto no Github:",
-    "start-assignment": "Começar Demo"
+    "start-assignment": "Começar Demo",
+    "start-assignment-intro": "Este overlay é apenas para demonstrar alguns componentes interessantes :). Para continuar com a demo por favor clique no botão abaixo.",
+    "start-assignment-intro-btn": "Vamos começar!"
   },
   "language-switcher": {
     "switch-to": "Mudar língua para",

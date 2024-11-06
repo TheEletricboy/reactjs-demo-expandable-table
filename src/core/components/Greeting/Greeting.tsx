@@ -12,20 +12,25 @@ const Greeting = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { addOverlay } = useOverlay();
-  const lblStartAssingment = t('homepage.start-assignment');
+  const lblStartAssignment = t('homepage.start-assignment');
 
   const openOverlay = useCallback(() => {
     addOverlay({
       id: startOverlayId,
-      content: (removeOverlay) => (<Button label='Show Table' onClick={() => {
-        removeOverlay();
-        navigate('/table/randomTableName-0');
-      }} />),
+      content: (removeOverlay) => (
+        <>
+          <p>{t('homepage.start-assignment-intro')}</p>
+          <Button label={t('homepage.start-assignment-intro-btn')} onClick={() => {
+            removeOverlay();
+            navigate('/table/randomTableName-0');
+          }} />
+        </>
+      ),
       isVisible: true,
       type: "modal",
-      label: lblStartAssingment,
+      label: lblStartAssignment,
     });
-  }, [addOverlay, lblStartAssingment, navigate]);
+  }, [addOverlay, navigate, t, lblStartAssignment]);
 
   return (
     <section className='greeting'>
@@ -42,7 +47,7 @@ const Greeting = () => {
           </span>
         </p>
       </h3>
-      <Button title='Begin the demo' label={lblStartAssingment} onClick={openOverlay} />
+      <Button title='Begin the demo' label={lblStartAssignment} onClick={openOverlay} />
     </section>
   );
 };

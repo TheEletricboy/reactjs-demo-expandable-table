@@ -4,7 +4,9 @@
     "greeting-developer": "Miguel Vieira.",
     "greeting-description-1": "I've been assigned this technical test by PrimeIt. As such, this ReactJS app not only delivers on the initial acceptance criteria but also show off my knowledge of project architecture and future feature considerations.",
     "greeting-description-2": "There are plenty of features on the finished app - as well as helpful configs and rules for aiding development. A list can be found on this project's Github repo:",
-    "start-assignment": "Start Assignment demo"
+    "start-assignment": "Start Assignment demo",
+    "start-assignment-intro": "This overlay is just to show off some cool components :). To proceed to the table click the button bellow.",
+    "start-assignment-intro-btn": "Let's begin!"
   },
   "language-switcher": {
     "switch-to": "Switch language to",
