@@ -35,7 +35,7 @@
   padding: 1rem;
   border-radius: var(--table-border-radius);
   box-shadow: var(--box-shadow-m);
-  background-color: color-mix(in srgb, var(--primary-color1-contrast) 50%, transparent);
+  background-color: var(--primary-color1-contrast);
   min-width: 80rem;
 }
 

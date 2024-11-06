@@ -18,8 +18,12 @@
 }
 
 .filters-submit {
-  --button-bg-color: color-mix(in srgb, var(--alt-color3-contrast) 30%, transparent);
+  --button-bg-color: var(--alt-color3-contrast);
   --button-font-color: var(--alt-color3);
+
+  &:hover {
+    color: var(--primary-color0);
+  }
 }
 
 .filters-reset {
