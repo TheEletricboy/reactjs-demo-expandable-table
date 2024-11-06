@@ -12,6 +12,11 @@
   width: 1.5rem;
 }
 
+.master-table-settings {
+  display: flex;
+  gap: 1rem;
+}
+
 .loading-wrapper {
   @include flex-it-all();
   height: 10rem;

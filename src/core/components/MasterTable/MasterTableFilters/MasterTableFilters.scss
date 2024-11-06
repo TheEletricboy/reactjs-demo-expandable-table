@@ -16,3 +16,24 @@
 .filters-form-container {
   display: flex;
 }
+
+.filters-submit {
+  --button-bg-color: color-mix(in srgb, var(--alt-color3-contrast) 30%, transparent);
+  --button-font-color: var(--alt-color3);
+}
+
+.filters-reset {
+  --button-bg-color: color-mix(in srgb, var(--alt-color4) 30%, transparent);
+  --button-font-color: var(--alt-color4-contrast);
+}
+
+.filters-buttons-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.filters-buttons-container {
+  display: flex;
+  gap: .5rem;
+}

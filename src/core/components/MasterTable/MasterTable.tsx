@@ -56,11 +56,20 @@ const MasterTable = ({index, tableName}: {index?: number, tableName: string;}) =
     <div className='master-table-wrapper'>
       <div className='master-table-top-info'>
         <h2 className='master-table-name'>{tableName ?? t('master-table.default-title')}</h2>
-        <RefreshIcon
-          role='button'
-          className='header-refresh-icon'
-          onClick={reloadAndReset}
-          title={t('table.reload')}/>
+        <div className='master-table-settings'>
+          <Button
+            className='master-table-style-switch'
+            title='Switch Table Style'
+            label={zebraEmoji}
+            onClick={toggleStyle}
+            isInverse={!isZebraStyle}
+            isSmall/>
+          <RefreshIcon
+            role='button'
+            className='header-refresh-icon'
+            onClick={reloadAndReset}
+            title={t('table.reload')}/>
+        </div>
       </div>
       <MasterTableFilters/>
       {
@@ -71,12 +80,6 @@ const MasterTable = ({index, tableName}: {index?: number, tableName: string;}) =
         ) : (
           <div className='master-table-container'>
             <div className='main-content'>
-              <Button
-                className='master-table-style-switch'
-                title='Switch Table Style'
-                label={zebraEmoji}
-                onClick={toggleStyle}
-                isInverse={!isZebraStyle}/>
               <table className={classNames(
                 'master-table',
                 `table-${index}`,

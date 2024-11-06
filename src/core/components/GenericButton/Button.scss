@@ -6,6 +6,7 @@
   --button-bg-color: var(--primary-color0);
   --button-border-color: var(--primary-color0);
   --button-font-color: var(--primary-color0-contrast);
+  --button-font-size: 1.5rem;
   --button-padding: 1rem;
 }
 
@@ -15,6 +16,11 @@
 
 .generic-button.inverse {
   @include button-inverse;
+}
+
+.generic-button.small {
+  --button-padding: .5rem;
+  --button-font-size: .8rem;
 }
 
 .secondary {

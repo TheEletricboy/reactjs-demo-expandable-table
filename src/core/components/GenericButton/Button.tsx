@@ -5,6 +5,7 @@ import './Button.scss';
 type TButtonProps = {
   label?: string,
   isInverse?: boolean,
+  isSmall?: boolean,
   isPrimary?: boolean; // could add secondary and tertiary in the future :D
   title?: string;
   children?: React.ReactNode;
@@ -23,6 +24,7 @@ const Button = ({
   children,
   isInverse,
   className,
+  isSmall = false,
   ...otherProps
 }: TButtonProps) => {
   // Useful if you need to handle the event in another place, by passing it as an arg on the callback.
@@ -33,6 +35,7 @@ const Button = ({
         'generic-button',
         { ['primary']: isPrimary },
         { 'inverse': isInverse },
+        { 'small': isSmall },
         className,
       )}
       onClick={handleOnClick}

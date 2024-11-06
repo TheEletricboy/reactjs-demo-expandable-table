@@ -55,13 +55,22 @@ const MasterTableFilters: React.FC = () => {
               options={filterOptions}
               dimension={dimension}/>
           ))}
-          <button type="submit">{t('table.apply-filters')}</button>
-          <Button
-            onClick={handleReset}
-            disabled={isLoading}
-            style={{ marginLeft: '10px', backgroundColor: 'blue', color: 'white' }}
-            label={t('table.reset-filters')}
-          />
+          <div className='filters-buttons-wrapper'>
+            <div className='filters-buttons-container'>
+              <Button
+                type="submit"
+                className='filters-submit'
+                disabled={isLoading}
+                label={t('table.apply-filters')}
+                isSmall/>
+              <Button
+                className='filters-reset'
+                onClick={handleReset}
+                disabled={isLoading}
+                label={t('table.reset-filters')}
+                isSmall/>
+            </div>
+          </div>
         </form>
       </div>
       <FilterSummary />

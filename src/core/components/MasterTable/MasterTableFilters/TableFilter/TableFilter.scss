@@ -15,21 +15,20 @@
   select {
     width: 9rem;
     padding: .5rem;
-    border: 1px solid var(--primary-color0);
-    border-radius: 4px;
-    background-color: #f9f9f9;
-    font-size: 14px;
-    color: #333;
+    border: 1px solid var(--primary-color1-contrast);
+    border-radius: .5rem;
+    background-color: var(--primary-color1);
+    color: var(--primary-color1-contrast);
     appearance: none; // Hides the default dropdown arrow
     background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='5'%3E%3Cpath fill='%23222222' d='M0 0l5 5 5-5z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right 10px center;
-    background-size: 10px 5px;
+    background-position: right .4rem center;
+    background-size: .6rem .3rem;
 
     @include hoverstate {
-      border-color: #007bff;
+      border-color: var(--alt-color4);
       outline: none;
-      box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+      box-shadow: 0 0 .4rem rgba(var(--alt-color4-rgb), 0.5);
     }
   }
 }
