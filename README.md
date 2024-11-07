@@ -5,16 +5,22 @@ This repo is composed of a client-side app made in reactjs.
 Further down you can find the project's acceptance criteria.
 
 Here's a list of some cool features:
-1. scss ready with some useful mixins.
+1. scss ready with some useful mixins (for buttons, flex-it-all, hoverstate checks, ...).
 2. Routes
 3. Contexts
 4. VSCODE and eslint rules (make eslint your main formatter) and also repo rules like guaranteeing eol LF (CRLF from windows is known to cause issues on Mac systems).
-5. Dark Theme - This applies to every single component and their different visual states (i.e.: buttons which have inverted colours). Persistent over browser sessions in localStorage.
+5. Dark Theme - This applies to every single component and their different visual states (i.e.: buttons which have inverted colours). Persistent over browser sessions in localStorage (it does cause a slight flash on first load as everything gets setup).
 6. Translations (2 langs) - with a toggler. Also persistent over browser sessions in localStorage.
 7. CSS global vars + comp-specific vars - to maintain a consistent look throughout, allowing for easy overriding in case this project was to become a private library for components for example. Guaranteeing little to no visual inconsistencies whilst allowing other projects to use their own colour pallets (primary, alt, and contrasting colours).
 8. Cool ready to go components: Overlay (with a scalable context to handle multiple), Button (very customizable + hover/focus colour changes), ReactComp SVG Icons,...
 9. Responsive on every comp level - most if not all comps have some sort of hover/focus ability.
 10. Accessibility - steps were taken where possible given the timeframe to make elements more accessible to screen readers.
+11. Table Component:
+  - TableContext to access info from mock data and other pertinent table state like styles.
+  - FiltersContext to access what filters are active.
+  - Various styles: including default and a **zebra** stripe style (CSS defines what rows get the style but I've also left some JS logic for more specific styling on certain rows - if more themes are added a TableThemeContext would be handy perhaps).
+  - Filters: They are dynamic and based on what is received from the API request (mocked JSON currently).
+  - Active Filters Summary: cool labels to show the user which filters are active. This can easily be updated to change the <select> background colour rather than having labels, I just wanted to show off a complexity of elements working together with the same table/filter state in conjunction with other data like DarkTheming :D.
 
 # Project Setup
 
