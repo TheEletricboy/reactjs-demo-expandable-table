@@ -20,7 +20,10 @@ Here's a list of some cool features:
   - FiltersContext to access what filters are active.
   - Various styles: including default and a **zebra** stripe style (CSS defines what rows get the style but I've also left some JS logic for more specific styling on certain rows - if more themes are added a TableThemeContext would be handy perhaps).
   - Filters: They are dynamic and based on what is received from the API request (mocked JSON currently).
-  - Active Filters Summary: cool labels to show the user which filters are active. This can easily be updated to change the <select> background colour rather than having labels, I just wanted to show off a complexity of elements working together with the same table/filter state in conjunction with other data like DarkTheming :D.
+  - Active Filters Summary: cool labels to show the user which filters are active. This can easily be updated to change the `<select>` background colour rather than having labels, I just wanted to show off a complexity of elements working together with the same table/filter state in conjunction with other data like DarkTheming :D.
+12. Various other components.
+
+
 
 # Project Setup
 
